@@ -19,12 +19,11 @@ public class Launcher {
 		ProducerTemplate template = context.createProducerTemplate();
 		
 		Object Api1 = template.requestBody("direct:firstApi", null, String.class);
-		Object Api2 = template.requestBody("direct:secondApi", null, String.class);;
+		Object Api2 = template.requestBody("direct:secondApi", null, String.class);
 		Exchange exchange = new DefaultExchange(context);
 
 		String response1 = ExchangeHelper.convertToType(exchange, String.class, Api1); 
 		String response2 = ExchangeHelper.convertToType(exchange, String.class, Api2); 
-		System.out.println("RESPONSE: " + response1);
 	
 		template.sendBodyAndHeader("direct:APIstart", response1, "HEADERID", 1);
 		template.sendBodyAndHeader("direct:APIstart", response2, "HEADERID", 1);
